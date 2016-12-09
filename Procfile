@@ -1,1 +1,1 @@
-web: python lugbot.py
+python lugbot.py
