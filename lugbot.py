@@ -18,5 +18,5 @@ def handle(msg):
 
 bot.message_loop(handle)
 while 1:
-        time.sleep(10)
+        time.sleep(100000000000000000000)
         print('hmmm')
