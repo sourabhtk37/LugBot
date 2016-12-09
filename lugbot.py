@@ -18,4 +18,4 @@ def handle(msg):
 
 bot.message_loop(handle)
 while 1:
-	time.sleep(10)
+	print('hmmm')
