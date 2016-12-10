@@ -2,7 +2,7 @@ import telepot
 import time
 from pprint import pprint
 
-bot=telepot.Bot("311260979:AAHLdVM2CoHi-Bg0GwWCFAgCmAB8Ad6vLZw")
+bot=telepot.Bot("<API-KEY>")
 
 def handle(msg):
 	content_type, chat_type, chat_id = telepot.glance(msg)
