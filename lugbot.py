@@ -3,7 +3,7 @@ import time
 from pprint import pprint
 from flask import Flask
 import os
-count=0
+
 app=Flask(__name__)
 
 if __name__ == '__main__':
@@ -29,5 +29,4 @@ if __name__ == '__main__':
         time.sleep(50)
         bot.sendMessage(180765147,"lol")
         port = int(os.environ.get('PORT', 5000))
-        app.run(host='0.0.0.0', port=port)
-        count=count+1
+        #app.run(host='0.0.0.0', port=port)
