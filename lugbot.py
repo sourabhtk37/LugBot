@@ -1,10 +1,16 @@
 import telepot
 import time
-from pprint import pprint
+#from pprint import pprint
 from flask import Flask
 import os
 
 app=Flask(__name__)
+
+@app.route('/')
+def home():
+    return "bruh,this is the shit."
+
+
 
 if __name__ == '__main__':
     bot=telepot.Bot("311260979:AAHLdVM2CoHi-Bg0GwWCFAgCmAB8Ad6vLZw")
@@ -26,7 +32,7 @@ if __name__ == '__main__':
     bot.message_loop(handle)
     
     while 1:
-        time.sleep(50)
-        bot.sendMessage(180765147,"lol")
+        #time.sleep(50)
+        #bot.sendMessage(180765147,"lol")
         port = int(os.environ.get('PORT', 5000))
         app.run(host='0.0.0.0', port=port)
