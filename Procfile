@@ -1,1 +1,1 @@
-web: python lugbot.py
+web: python lugbot.py && python hitserver.py
