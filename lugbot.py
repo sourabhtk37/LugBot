@@ -27,5 +27,6 @@ if __name__ == '__main__':
 
     bot.message_loop(handle)
     while 1:
+        time.sleep(30)
         r=requests.get("http://glacial-plateau-17952.herokuapp.com/")
         print(r.text)
