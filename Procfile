@@ -1,2 +1,2 @@
-worker: python hitserver.py
+worker: python lugbot.py
 

@@ -1,7 +1,7 @@
 import telepot
 from flask import Flask
-import os
-
+import os  
+import requests 
 app = Flask(__name__)
 
 
@@ -24,9 +24,8 @@ if __name__ == '__main__':
             bot.sendMessage(chat_id, invite_link)
         if msg['text'] == '/mailinglist':
             bot.sendMessage(chat_id, mailing_list)
+
     bot.message_loop(handle)
     while 1:
-        # time.sleep(50)
-        # bot.sendMessage(180765147,"lol")
-        port = int(os.environ.get('PORT', 5000))
-        app.run(host='0.0.0.0', port=port)
+        r=requests.get("http://glacial-plateau-17952.herokuapp.com/")
+        print(r.text)
