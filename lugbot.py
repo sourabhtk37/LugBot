@@ -26,9 +26,9 @@ if __name__ == '__main__':
             bot.sendMessage(chat_id, invite_link)
         if msg['text'] == '/mailinglist':
             bot.sendMessage(chat_id, mailing_list)
-        if msg['text'] == '/facebook'
+        if msg['text'] == '/facebook':
             bot.sendMessage(chat_id, fb_link)
-        if msg['text'] == '/twitter'
+        if msg['text'] == '/twitter':
             bot.sendMessage(chat_id, tw_link)
 
     bot.message_loop(handle)
