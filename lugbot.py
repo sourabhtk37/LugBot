@@ -1,32 +1,47 @@
-import telepot
-from flask import Flask
-import requests
-import time
-app = Flask(__name__)
+# -*- coding: utf-8 -*-
 
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, InlineQueryHandler
+import configparser
+import logging
+from telegram import ChatAction
 
-@app.route('/')
-def home():
-    return "bruh,this is the shit."
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.DEBUG)
 
+config = configparser.ConfigParser()
+config.read('bot.ini')
 
-invite_link = "https://telegram.me/joinchat/DQQdYgqEmJF62rPE__9d_w"
-mailing_list = "http://frodo.hserus.net/mailman/listinfo/ilugd"
+updater = Updater(token=config['BOT']['TOKEN'])
+dispatcher = updater.dispatcher
 
-if __name__ == '__main__':
+def invitelink(bot, update):
+    bot.sendChatAction(chat_id=update.message.chat_id,
+                       action=ChatAction.TYPING)
+    bot.sendMessage(chat_id=update.message.chat_id, text=config['BOT']['invite_link'])
 
-    bot = telepot.Bot("311260979:AAHLdVM2CoHi-Bg0GwWCFAgCmAB8Ad6vLZw")
+def twitter(bot, update):
+    bot.sendChatAction(chat_id=update.message.chat_id,
+                       action=ChatAction.TYPING)
+    bot.sendMessage(chat_id=update.message.chat_id, text=config['BOT']['twitter'])
 
-    def handle(msg):
-        content_type, chat_type, chat_id = telepot.glance(msg)
-        print(content_type, chat_type, chat_id)
-        if msg['text'] == '/invitelink':
-            bot.sendMessage(chat_id, invite_link)
-        if msg['text'] == '/mailinglist':
-            bot.sendMessage(chat_id, mailing_list)
+def facebook(bot, update):
+    bot.sendChatAction(chat_id=update.message.chat_id,
+                       action=ChatAction.TYPING)
+    bot.sendMessage(chat_id=update.message.chat_id, text=config['BOT']['facebook'])
 
-    bot.message_loop(handle)
-    while 1:
-        time.sleep(30)
-        r = requests.get("http://glacial-plateau-17952.herokuapp.com/")
-        print(r.text)
+def mailinglist(bot, update):
+    bot.sendChatAction(chat_id=update.message.chat_id,
+                       action=ChatAction.TYPING)
+    bot.sendMessage(chat_id=update.message.chat_id, text=config['BOT']['mailing_list'])
+
+twitter_handler = CommandHandler('twitter',twitter)
+invite_handler = CommandHandler('invitelink',invitelink)
+facebook_handler = CommandHandler('facebook',facebook)
+mailinglist_handler = CommandHandler('mailinglist',mailinglist)
+
+dispatcher.add_handler(twitter_handler)
+dispatcher.add_handler(invite_handler)
+dispatcher.add_handler(facebook_handler)
+dispatcher.add_handler(mailinglist_handler)
+
+updater.start_polling()
+updater.idle()
