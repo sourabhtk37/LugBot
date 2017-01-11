@@ -10,8 +10,10 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 config = configparser.ConfigParser()
 config.read('bot.ini')
 
+
 updater = Updater(token=config['BOT']['TOKEN'])
 dispatcher = updater.dispatcher
+
 
 def invitelink(bot, update):
     bot.sendChatAction(chat_id=update.message.chat_id,
@@ -23,10 +25,12 @@ def twitter(bot, update):
                        action=ChatAction.TYPING)
     bot.sendMessage(chat_id=update.message.chat_id, text=config['BOT']['twitter'])
 
+
 def facebook(bot, update):
     bot.sendChatAction(chat_id=update.message.chat_id,
                        action=ChatAction.TYPING)
     bot.sendMessage(chat_id=update.message.chat_id, text=config['BOT']['facebook'])
+
 
 def mailinglist(bot, update):
     bot.sendChatAction(chat_id=update.message.chat_id,
